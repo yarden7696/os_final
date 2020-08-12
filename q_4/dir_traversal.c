@@ -15,13 +15,14 @@ static int display_info(const char *fpath, const struct stat *sb,
      else if(tflag == FTW_F) printf( "F " ); // regular file.
      else if(tflag == FTW_NS) printf( "NS " );
      else { return 0; }
-     printf( "%ld %s\n", sb->st_ino, &fpath[ftwbuf->base]);
+     printf( "%ld %s\n", sb->st_ino, &fpath[ftwbuf->base]); // printing inode number and file`s name 
     return 0;          
 }
 
 int main(int argc, char *argv[])
 {
     char* name=argv[1];
-    nftw(name,display_info,20,FTW_PHYS);
+    // The nftw() function shall recursively descend the directory hierarchy rooted in path.
+    nftw(name,display_info,20,FTW_PHYS); 
     exit(EXIT_SUCCESS);
 }

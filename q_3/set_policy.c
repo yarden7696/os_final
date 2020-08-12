@@ -43,33 +43,33 @@ struct sched_attr {
 };
 
 // this function used for SCHED_DEADLINE
-int sched_set(pid_t pid, const struct sched_attr *attr, unsigned int flags) {
-        return syscall( __NR_sched_setattr, pid, attr, flags);
+int sched_set(pid_t _pid, const struct sched_attr *_attr, unsigned int _flags) {
+        return syscall( __NR_sched_setattr, _pid, _attr, _flags);
 }
 
 void main(int argc , char* argv[]){
   
-  pid_t pid  = getpid();
-  printf("PID of the process : %d\n", pid);
-  int policy = atoi(argv[1]);
-  printf("Policy : %d\n", policy);
-  int priority = atoi(argv[2]);
-  printf("Priority : %d\n",priority);
+  pid_t _pid  = getpid(); 
+  printf("PID of the process : %d\n", _pid); // print to the terminal process`s PID
+  int _policy = atoi(argv[1]);
+  printf("Policy : %d\n", _policy); // print to the terminal the new policy
+  int _priority = atoi(argv[2]);
+  printf("Priority : %d\n",_priority); // print to the terminal the new priority
 
   struct sched_param sp; // sp take care of the policies - 0,1,2,5
 
    //  SCHED_OTHER = 0,  SCHED_FIFO = 1,  SCHED_RR = 2,  SCHED_IDLE = 5
-  if( policy == 0 || policy == 1 || policy == 2 || policy == 5 ) {
-        sp.sched_priority = priority; 
-             if(sched_setscheduler(0, policy, &sp) == -1) { printf("failed\n"); }
+  if( _policy == 0 || _policy == 1 || _policy == 2 || _policy == 5 ) {
+        sp.sched_priority = _priority; 
+             if(sched_setscheduler(0, _policy, &sp) == -1) { printf("failed\n"); }
   }
 
-  else if ( policy == 6 ) { // SCHED_DEADLINE = 6
+  else if ( _policy == 6 ) { // SCHED_DEADLINE = 6
 
     struct sched_attr s_attr; // create new struct for SCHED_DEADLINE
     
     // Putting the values ​​in the fields of the struct
-    s_attr.sched_priority = priority;
+    s_attr.sched_priority = _priority;
     s_attr.sched_policy = SCHED_DEADLINE;
     s_attr.sched_flags = 0; 
     s_attr.size = sizeof(s_attr); 
