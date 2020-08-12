@@ -7,7 +7,7 @@
 
 int main(int argc, char *argv[]) {
 
-int pid = atoi(argv[1]); // getting the process number
+int pid = atoi(argv[1]); // here we getting the process number
 
 if(kill(pid,0)==0) printf(" Process %d exists \n", pid);//if process Pid==0 its mean that the process exist
 else {
