@@ -47,7 +47,7 @@ int sched_set(pid_t _pid, const struct sched_attr *_attr, unsigned int _flags) {
         return syscall( __NR_sched_setattr, _pid, _attr, _flags);
 }
 
-void main(int argc , char* argv[]){
+void main(int argc , char* argv[]) {
   
   pid_t _pid  = getpid(); 
   printf("PID of the process : %d\n", _pid); // print to the terminal process`s PID
@@ -65,9 +65,7 @@ void main(int argc , char* argv[]){
   }
 
   else if ( _policy == 6 ) { // SCHED_DEADLINE = 6
-
     struct sched_attr s_attr; // create new struct for SCHED_DEADLINE
-    
     // Putting the values ​​in the fields of the struct
     s_attr.sched_priority = _priority;
     s_attr.sched_policy = SCHED_DEADLINE;
