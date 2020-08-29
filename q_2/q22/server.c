@@ -12,10 +12,8 @@
 static int counter = 0; 
 
 void _handler(int signal) {
-
     if(signal==2)
-	 	counter++; // Counting the number of SIGINT signals that received to the server 
-		 
+	 	counter++; // Counting the number of SIGINT signals that received to the server 		 
     else if(signal==10)  
 	    // Print the number of SIGINT signals that have reached the server
 		printf("\n A total of %d SIGINT signals reached to the server \n",counter);	
