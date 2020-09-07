@@ -12,7 +12,7 @@ static int display_info(const char *fpath, const struct stat *sb,
      if (tflag==FTW_D) printf( "D " ); // directory.
      else if(tflag == FTW_DNR) printf( "DNR " ); // fpath is a directory which can't be read.
      else if(tflag == FTW_DP) printf( "DP " );
-     else if(tflag == FTW_F) printf( "F " ); // regular file.
+     else if(tflag == FTW_F) printf( "F " ); // regular file
      else if(tflag == FTW_NS) printf( "NS " );
      else { return 0; }
      printf( "%ld %s\n", sb->st_ino, &fpath[ftwbuf->base]); // printing inode number and file`s name 
